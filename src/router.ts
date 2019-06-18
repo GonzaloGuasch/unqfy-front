@@ -2,12 +2,16 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Search from './views/Search.vue';
+import Artist from './views/Artist.vue'
+import Album from './views/Album.vue';
 
 Vue.use(Router);
 
 export enum ROUTES {
   HOME = 'home',
-  SEARCH = 'search'
+  SEARCH = 'search',
+  ARTIST = 'artist',
+  ALBUM = 'album',
 }
 
 export default new Router({
@@ -25,5 +29,17 @@ export default new Router({
       component: Search,
       props: true,
     },
+    {
+      path: `/${ROUTES.ARTIST}/:id`,
+      name: ROUTES.ARTIST,
+      component: Artist,
+      props: true,
+    },
+    {
+      path: `/${ROUTES.ALBUM}/:id`,
+      name: ROUTES.ALBUM,
+      component: Album,
+      props: true,
+    }
   ],
 });

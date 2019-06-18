@@ -43,12 +43,13 @@
         async beforeMount() {
           const category = this.$route.params.category;
           const query = this.$route.params.query;
-          const artistsResult = await axios.get(`http://localhost:3030/api/artists?name=${query}`);
-          const albumsResult = await axios.get(`http://localhost:3030/api/albums?name=${query}`);
+          let promises = []
+          promises.push(axios.get(`http://localhost:3030/api/artists?name=${query}`));
+          promises.push(axios.get(`http://localhost:3030/api/albums?name=${query}`));
+          promises = await Promise.all(promises)
           this.selectedTab = category
-          this.artists = artistsResult.data
-          this.albums = albumsResult.data
-            console.log(albumsResult)
+          this.artists = promises[0].data
+          this.albums = promises[1].data
         },
     });
 </script>
