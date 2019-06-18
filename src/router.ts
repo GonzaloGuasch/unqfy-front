@@ -1,23 +1,28 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import SearchResults from '@/views/SearchResults.vue';
+import Search from './views/Search.vue';
 
 Vue.use(Router);
+
+export enum ROUTES {
+  HOME = 'home',
+  SEARCH = 'search'
+}
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: `/`,
+      name: ROUTES.HOME,
       component: Home,
     },
     {
-      path: '/search/:type/:query',
-      name: 'search-results',
-      component: SearchResults,
+      path: `/${ROUTES.SEARCH}/:category/:query`,
+      name: ROUTES.SEARCH,
+      component: Search,
       props: true,
     },
   ],
