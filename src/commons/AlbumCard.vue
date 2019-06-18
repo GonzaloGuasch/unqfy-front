@@ -1,7 +1,7 @@
 <template>
-  <div class="artist-container">
+  <div class="album-container">
     <div class="title">
-      {{artist.name}}
+      {{album.name}}
     </div>
   </div>
 </template>
@@ -10,9 +10,9 @@
   import Vue from 'vue';
 
   export default Vue.extend({
-    name: 'artist-card',
+    name: 'album-card',
       props: {
-        artist: {
+        album: {
           type: Object,
         }
       },
@@ -20,8 +20,7 @@
 </script>
 
 <style scoped>
-.artist-container {
-  border-radius: 50%;
+.album-container {
   background: #1ed760;
   width: 200px;
   height: 200px;

@@ -1,8 +1,15 @@
 <template>
   <div class="container">
     <search-bar/>
-    <div v-if="objects" class="results-container">
-      <artist-card v-for="object in objects" :key="object.name" :artist="object"/>
+    <div class="tabs">
+      <div class="tab" :class="selectedTab === 'artists' ? 'selected' : ''" @click="selectTab('artists')">Artists</div>
+      <div class="tab" :class="selectedTab === 'albums' ? 'selected' : ''" @click="selectTab('albums')">Albums</div>
+    </div>
+    <div v-if="selectedTab === 'artists' && artists" class="results-container">
+      <artist-card v-for="artist in artists" :key="artist.name" :artist="artist"/>
+    </div>
+    <div v-if="selectedTab === 'albums' && albums" class="results-container">
+      <album-card v-for="album in albums" :key="album.name" :album="album"/>
     </div>
   </div>
 </template>
@@ -12,23 +19,36 @@
     import axios from 'axios';
     import ArtistCard from '../commons/ArtistCard.vue';
     import SearchBar from '../commons/SearchBar.vue';
+    import AlbumCard from '../commons/AlbumCard.vue';
 
     export default Vue.extend({
         name: "search",
         components: {
             ArtistCard,
+            AlbumCard,
             SearchBar,
         },
         data() {
             return {
-                objects: []
+                artists: [],
+                albums: [],
+                selectedTab: ''
             };
+        },
+        methods: {
+          selectTab(tabName: string) {
+            this.selectedTab = tabName
+          }
         },
         async beforeMount() {
           const category = this.$route.params.category;
           const query = this.$route.params.query;
-          const result = await axios.get(`http://localhost:3030/api/${category}?name=${query}`);
-          this.objects = result.data[0].albums
+          const artistsResult = await axios.get(`http://localhost:3030/api/artists?name=${query}`);
+          const albumsResult = await axios.get(`http://localhost:3030/api/albums?name=${query}`);
+          this.selectedTab = category
+          this.artists = artistsResult.data
+          this.albums = albumsResult.data
+            console.log(albumsResult)
         },
     });
 </script>
@@ -49,6 +69,24 @@
       flex-wrap: wrap;
       justify-content: center;
       margin-top: 50px;
+      overflow-y: scroll;
+      margin-bottom: 20px;
     }
+  }
+
+  .tabs {
+    display: flex;
+  }
+
+  .tab {
+    background: white;
+    cursor: pointer;
+    height: 30px;
+    width: 200px;
+    border-radius: 3px;
+  }
+
+  .tab:hover, .selected {
+    background: #1ed760;
   }
 </style>

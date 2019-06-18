@@ -31,16 +31,4 @@ export default Vue.extend({
     justify-content: flex-start;
   }
 
-  .search-bar {
-    margin-top: 100px;
-
-    .search-button {
-      background: #1ed760;
-      border: 0;
-      height: 29px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-  }
-
 </style>

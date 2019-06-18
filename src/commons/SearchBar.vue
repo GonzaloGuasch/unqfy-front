@@ -59,6 +59,15 @@
 .search-bar {
   display: flex;
   align-items: center;
+  margin-top: 100px;
   height: 40px;
+}
+
+.search-button {
+  background: #1ed760;
+  border: 0;
+  height: 29px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 </style>
