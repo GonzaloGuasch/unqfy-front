@@ -80,7 +80,7 @@
   }
 
   .tab {
-    background: white;
+    background: #1ed760;
     cursor: pointer;
     height: 30px;
     width: 200px;
@@ -88,6 +88,6 @@
   }
 
   .tab:hover, .selected {
-    background: #1ed760;
+    background: white;
   }
 </style>

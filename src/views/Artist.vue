@@ -1,5 +1,6 @@
 <template>
   <div v-if="artist" class="artist-details-container">
+    <search-bar/>
     <div class="name">
       {{artist.name}}
     </div>
@@ -16,11 +17,13 @@
   import Vue from 'vue';
   import axios from 'axios';
   import AlbumCard from '../commons/AlbumCard.vue'
+  import SearchBar from '../commons/SearchBar.vue';
 
   export default Vue.extend({
     name: 'artist',
     components: {
       AlbumCard,
+      SearchBar,
     },
     data() {
       return {
