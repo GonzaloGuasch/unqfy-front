@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <search-bar/>
     <div class="tabs">
       <div class="tab" :class="selectedTab === 'artists' ? 'selected' : ''" @click="selectTab('artists')">Artists</div>
       <div class="tab" :class="selectedTab === 'albums' ? 'selected' : ''" @click="selectTab('albums')">Albums</div>
@@ -18,7 +17,6 @@
     import Vue from "vue";
     import axios from 'axios';
     import ArtistCard from '../commons/ArtistCard.vue';
-    import SearchBar from '../commons/SearchBar.vue';
     import AlbumCard from '../commons/AlbumCard.vue';
 
     export default Vue.extend({
@@ -26,7 +24,6 @@
         components: {
             ArtistCard,
             AlbumCard,
-            SearchBar,
         },
         data() {
             return {

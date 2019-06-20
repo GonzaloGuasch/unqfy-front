@@ -14,7 +14,7 @@ export enum ROUTES {
   ALBUM = 'album',
 }
 
-export default new Router({
+const routerInstance = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -43,3 +43,9 @@ export default new Router({
     }
   ],
 });
+
+export function inRoute(route: ROUTES) {
+  return routerInstance.currentRoute.name === route
+}
+
+export default routerInstance
