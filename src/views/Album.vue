@@ -14,6 +14,7 @@
         <button class="confirm" @click="deleteAlbum">Confirm</button>
       </div>
     </modal>
+    <edition-modal :subject="{id: this.albumId, identity: 'Album', data: album}"/>
   </div>
 </template>
 
@@ -24,12 +25,14 @@
   import TitleWithOptions from '../commons/TitleWithOptions.vue';
   import {ROUTES} from '@/router';
   import {sleep} from '@/utils';
+  import EditionModal from '../commons/EditionModal.vue';
 
   export default Vue.extend({
     name: 'album',
     components: {
       TrackCard,
       TitleWithOptions,
+      EditionModal,
     },
     data() {
       return {
@@ -40,13 +43,10 @@
     },
     methods: {
       onEdit() {
-
+        this.$modal.show('edition-modal')
       },
       onDelete() {
         this.$modal.show('delete-album')
-      },
-      async editAlbum() {
-
       },
       async deleteAlbum() {
         this.$emit('loading', true)
