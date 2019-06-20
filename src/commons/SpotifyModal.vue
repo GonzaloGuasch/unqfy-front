@@ -33,7 +33,9 @@
     },
     methods: {
       async onSubmit() {
+        this.$emit('loading', true)
         const result = await axios.post('http://localhost:3030/api/spotify', {name: this.name})
+        this.$emit('loading', false)
         this.$modal.hide('spotify-modal')
       },
     },

@@ -76,9 +76,10 @@
         this.selectedOption = payload;
       },
       async onSubmit() {
+        this.$emit('loading', true)
         const payload = this.selectedOption.route === 'artists' ? this.artist : this.album
         const result = await axios.post(`http://localhost:3030/api/${this.selectedOption.route}`, payload)
-        console.log(result)
+        this.$emit('loading', false)
         this.$modal.hide('creation-modal')
       },
     },
