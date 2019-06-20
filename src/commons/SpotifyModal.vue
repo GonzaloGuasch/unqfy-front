@@ -23,6 +23,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import axios from 'axios';
+  import {sleep} from '@/utils';
 
   export default Vue.extend({
     name: "spotify-modal",
@@ -35,8 +36,10 @@
       async onSubmit() {
         this.$emit('loading', true)
         const result = await axios.post('http://localhost:3030/api/spotify', {name: this.name})
+        await sleep(1000)
         this.$emit('loading', false)
         this.$modal.hide('spotify-modal')
+        this.$forceUpdate();
       },
     },
   })

@@ -3,10 +3,10 @@ import App from './App.vue';
 import router from './router';
 import VModal from 'vue-js-modal'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faPlus, faPen, faTimes} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faPlus)
+library.add(faPlus, faPen, faTimes)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

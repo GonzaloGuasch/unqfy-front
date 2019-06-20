@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <loading :is-full-page="true" :active.sync="isLoading" color="#1ed760" background-color="#000000"/>
+    <loading :is-full-page="true" :active.sync="isLoading" color="#1ed760" background-color="#000000" :z-index="1500"/>
     <navbar v-if="!inRoute(ROUTES.HOME)"/>
-    <router-view :key="$route.path"/>
+    <router-view :key="$route.path" @loading="setLoading"/>
     <creation-button/>
     <creation-modal @loading="setLoading"/>
     <spotify-button/>
@@ -18,6 +18,7 @@
   import CreationModal from './commons/CreationModal.vue';
   import SpotifyButton from './commons/SpotifyButton.vue';
   import SpotifyModal from './commons/SpotifyModal.vue';
+  // @ts-ignore
   import Loading from 'vue-loading-overlay';
   import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -40,13 +41,7 @@
     methods: {
       inRoute,
       setLoading(loadingState: boolean) {
-        if (loadingState) {
-          this.isLoading = loadingState
-        } else {
-          setTimeout(() => {
-            this.isLoading = loadingState
-          },1000)
-        }
+        this.isLoading = loadingState
       },
     }
   })

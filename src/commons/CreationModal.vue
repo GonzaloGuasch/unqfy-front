@@ -39,6 +39,7 @@
   import Vue from 'vue';
   import dropdown from 'vue-dropdowns';
   import axios from 'axios';
+  import {sleep} from '@/utils';
 
   const options = [
     {
@@ -79,8 +80,10 @@
         this.$emit('loading', true)
         const payload = this.selectedOption.route === 'artists' ? this.artist : this.album
         const result = await axios.post(`http://localhost:3030/api/${this.selectedOption.route}`, payload)
+        await sleep(1000)
         this.$emit('loading', false)
         this.$modal.hide('creation-modal')
+        this.$forceUpdate();
       },
     },
   })
