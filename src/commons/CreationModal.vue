@@ -128,6 +128,7 @@
       background: #1ed760;
       border-radius: 5px;
       font-weight: 900;
+      cursor: pointer;
     }
   }
 </style>
