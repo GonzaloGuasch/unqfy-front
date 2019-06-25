@@ -59,8 +59,12 @@
     },
     async beforeMount() {
       this.albumId = this.$route.params.id;
-      const albumResult = await axios.get(`http://localhost:3030/api/albums/${this.albumId}`)
-      this.album = albumResult.data
+      try {
+        const albumResult = await axios.get(`http://localhost:3030/api/albums/${this.albumId}`)
+        this.album = albumResult.data
+      } catch {
+        this.$router.push({name: ROUTES.PAGE_NOT_FOUND })
+      }
     },
   })
 </script>

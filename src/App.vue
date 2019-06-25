@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <loading :is-full-page="true" :active.sync="isLoading" color="#1ed760" background-color="#000000" :z-index="1500"/>
-    <navbar v-if="!inRoute(ROUTES.HOME)"/>
+    <navbar v-if="!inRoute(ROUTES.HOME) && !inRoute(ROUTES.PAGE_NOT_FOUND)"/>
     <router-view :key="$route.path" @loading="setLoading"/>
-    <creation-button/>
+    <creation-button v-if="!inRoute(ROUTES.PAGE_NOT_FOUND)"/>
     <creation-modal @loading="setLoading"/>
-    <spotify-button/>
+    <spotify-button v-if="!inRoute(ROUTES.PAGE_NOT_FOUND)"/>
     <spotify-modal @loading="setLoading"/>
   </div>
 </template>

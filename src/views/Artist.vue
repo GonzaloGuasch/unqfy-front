@@ -64,8 +64,12 @@
     },
     async beforeMount() {
       this.artistId = this.$route.params.id;
-      const artistResult = await axios.get(`http://localhost:3030/api/artists/${this.artistId}`)
-      this.artist = artistResult.data
+      try {
+        const artistResult = await axios.get(`http://localhost:3030/api/artists/${this.artistId}`)
+        this.artist = artistResult.data
+      } catch {
+        this.$router.push({name: ROUTES.PAGE_NOT_FOUND })
+      }
     },
   })
 </script>
